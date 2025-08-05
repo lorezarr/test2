@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STREETWEAR | Премиум уличная одежда</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        .fade-in {
+            animation: fadeIn 1s ease-out forwards;
+        }
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        .modal {
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        @media (max-width: 768px) {
+            .parallax {
+                background-attachment: scroll;
+            }
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50 text-gray-900">
+    <!-- Шапка -->
+    <header class="fixed w-full z-50 bg-white/90 backdrop-blur-md shadow-sm">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="text-3xl font-bold tracking-tighter">
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">STREETWEAR</span>
+            </div>
+            
+            <nav class="hidden md:flex space-x-8">
+                <a href="#" class="font-medium hover:text-purple-600 transition">Мужское</a>
+                <a href="#" class="font-medium hover:text-purple-600 transition">Женское</a>
+                <a href="#" class="font-medium hover:text-purple-600 transition">Детское</a>
+                <a href="#" class="font-medium hover:text-purple-600 transition">Новинки</a>
+                <a href="#" class="font-medium hover:text-purple-600 transition">Акции</a>
+            </nav>
+            
+            <div class="flex items-center space-x-4">
+                <button class="p-2 rounded-full hover:bg-gray-100">
+                    <i class="fas fa-search text-lg"></i>
+                </button>
+                <button class="p-2 rounded-full hover:bg-gray-100">
+                    <i class="fas fa-shopping-bag text-lg"></i>
+                </button>
+                <button id="menuBtn" class="md:hidden p-2 rounded-full hover:bg-gray-100">
+                    <i class="fas fa-bars text-lg"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Мобильное меню -->
+        <div id="mobileMenu" class="hidden md:hidden absolute top-full left-0 w-full bg-white shadow-lg py-2 px-4">
+            <a href="#" class="block py-2 hover:text-purple-600">Мужское</a>
+            <a href="#" class="block py-2 hover:text-purple-600">Женское</a>
+            <a href="#" class="block py-2 hover:text-purple-600">Детское</a>
+            <a href="#" class="block py-2 hover:text-purple-600">Новинки</a>
+            <a href="#" class="block py-2 hover:text-purple-600">Акции</a>
+        </div>
+    </header>
+
+    <!-- Герой секция -->
+    <section class="pt-32 pb-20 px-4 bg-gradient-to-br from-gray-900 to-gray-800 text-white relative overflow-hidden">
+        <div class="container mx-auto flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-10 md:mb-0 fade-in">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+                    Новая коллекция <span class="text-purple-400">Urban Vibe</span>
+                </h1>
+                <p class="text-xl mb-8 text-gray-300 max-w-lg">
+                    Эксклюзивные модели с инновационными материалами. Созданы для комфорта и стиля в любых условиях.
+                </p>
+                <div class="flex space-x-4">
+                    <button class="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-full font-medium transition-all transform hover:scale-105">
+                        Купить сейчас
+                    </button>
+                    <button id="videoBtn" class="flex items-center text-gray-300 hover:text-white">
+                        <span class="w-12 h-12 flex items-center justify-center rounded-full bg-white/10 mr-2">
+                            <i class="fas fa-play"></i>
+                        </span>
+                        Смотреть видео
+                    </button>
+                </div>
+            </div>
+            
+            <div class="md:w-1/2 flex justify-center relative">
+                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
+                     alt="Кроссовки" 
+                     class="w-full max-w-md float-animation rounded-xl shadow-2xl">
+                <div class="absolute -bottom-10 -right-10 w-32 h-32 bg-purple-600 rounded-full opacity-20 blur-3xl"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Популярные товары -->
+    <section class="py-20 px-4">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-16">Популярные товары</h2>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Товар 1 -->
+                <div class="product-card bg-white rounded-xl overflow-hidden shadow-md transition-all duration-300 cursor-pointer group">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1600269452121-1fda279b8a1a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
+                             alt="Кроссовки Air Max" 
+                             class="w-full h-64 object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute top-4 right-4 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">
+                            -20%
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-lg mb-2">Air Max 270</h3>
+                        <div class="flex items-center mb-3">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="text-gray-500 text-sm ml-2">(48 отзывов)</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-lg">8 990 ₽</span>
+                            <span class="text-gray-500 text-sm line-through">10 990 ₽</span>
+                        </div>
+                    </div>
+                    <button class="quick-view-btn w-full py-3 bg-gray-100 text-gray-800 font-medium hover:bg-gray-200 transition" 
+                            data-product="Air Max 270" 
+                            data-price="8990" 
+                            data-img="https://images.unsplash.com/photo-1600269452121-1fda279b8a1a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80">
+                        Быстрый просмотр
+                    </button>
+                </div>
+                
+                <!-- Товар 2 -->
+                <div class="product-card bg-white rounded-xl overflow-hidden shadow-md transition-all duration-300 cursor-pointer group">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1025&q=80" 
+                             alt="Футболка Oversize" 
+                             class="w-full h-64 object-cover group-hover:scale-110 transition duration-500">
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-lg mb-2">Футболка Oversize</h3>
+                        <div class="flex items-center mb-3">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="text-gray-500 text-sm ml-2">(112 отзывов)</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-lg">3 490 ₽</span>
+                        </div>
+                    </div>
+                    <button class="quick-view-btn w-full py-3 bg-gray-100 text-gray-800 font-medium hover:bg-gray-200 transition" 
+                            data-product="Футболка Oversize" 
+                            data-price="3490" 
+                            data-img="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1025&q=80">
+                        Быстрый просмотр
+                    </button>
+                </div>
+                
+                <!-- Товар 3 -->
+                <div class="product-card bg-white rounded-xl overflow-hidden shadow-md transition-all duration-300 cursor-pointer group">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80" 
+                             alt="Куртка Windbreaker" 
+                             class="w-full h-64 object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded-full">
+                            NEW
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-lg mb-2">Куртка Windbreaker</h3>
+                        <div class="flex items-center mb-3">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="text-gray-500 text-sm ml-2">(24 отзыва)</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-lg">12 990 ₽</span>
+                        </div>
+                    </div>
+                    <button class="quick-view-btn w-full py-3 bg-gray-100 text-gray-800 font-medium hover:bg-gray-200 transition" 
+                            data-product="Куртка Windbreaker" 
+                            data-price="12990" 
+                            data-img="https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80">
+                        Быстрый просмотр
+                    </button>
+                </div>
+                
+                <!-- Товар 4 -->
+                <div class="product-card bg-white rounded-xl overflow-hidden shadow-md transition-all duration-300 cursor-pointer group">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1026&q=80" 
+                             alt="Штаны Jogger" 
+                             class="w-full h-64 object-cover group-hover:scale-110 transition duration-500">
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-lg mb-2">Штаны Jogger</h3>
+                        <div class="flex items-center mb-3">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="text-gray-500 text-sm ml-2">(89 отзывов)</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-lg">5 990 ₽</span>
+                        </div>
+                    </div>
+                    <button class="quick-view-btn w-full py-3 bg-gray-100 text-gray-800 font-medium hover:bg-gray-200 transition" 
+                            data-product="Штаны Jogger" 
+                            data-price="5990" 
+                            data-img="https://images.unsplash.com/photo-1542272604-787c3835535d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1026&q=80">
+                        Быстрый просмотр
+                    </button>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <button class="px-8 py-3 border-2 border-gray-900 text-gray-900 font-bold rounded-full hover:bg-gray-900 hover:text-white transition">
+                    Смотреть все товары
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Параллакс секция -->
+    <section class="parallax py-32 px-4 bg-gray-900 text-white" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1491553895911-0055eca6402d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1180&q=80')">
+        <div class="container mx-auto text-center">
+            <h2 class="text-4xl font-bold mb-6">Ограниченная коллекция</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">
+                Только в этом сезоне - эксклюзивные модели, созданные в коллаборации с ведущими дизайнерами уличной моды.
+            </p>
+            <button class="px-8 py-3 bg-purple-600 text-white font-bold rounded-full hover:bg-purple-700 transition transform hover:scale-105 pulse-animation">
+                Узнать больше
+            </button>
+        </div>
+    </section>
+
+    <!-- Преимущества -->
+    <section class="py-20 px-4 bg-gray-50">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition text-center">
+                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-truck text-purple-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-3">Бесплатная доставка</h3>
+                    <p class="text-gray-600">
+                        Бесплатная доставка по всей России при заказе от 5 000 ₽. Быстрая доставка в течение 1-3 дней.
+                    </p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition text-center">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-undo-alt text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-3">Легкий возврат</h3>
+                    <p class="text-gray-600">
+                        Возврат в течение 30 дней без вопросов. Мы заботимся о вашем комфорте при покупке.
+                    </p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-shield-alt text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-3">Гарантия качества</h3>
+                    <p class="text-gray-600">
+                        Все товары проходят строгий контроль качества. Мы используем только лучшие материалы.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Подписка -->
+    <section class="py-20 px-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+        <div class="container mx-auto max-w-4xl text-center">
+            <h2 class="text-3xl font-bold mb-6">Подпишитесь на рассылку</h2>
+            <p class="text-xl mb-8 opacity-90">
+                Получайте эксклюзивные предложения, информацию о новых коллекциях и специальные скидки для подписчиков.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                <input type="email" placeholder="Ваш email" class="flex-grow px-4 py-3 rounded-full text-gray-900 focus:outline-none focus:ring-2 focus:ring-purple-300">
+                <button class="px-6 py-3 bg-gray-900 text-white font-bold rounded-full hover:bg-gray-800 transition">
+                    Подписаться
+                </button>
+            </div>
+            
+            <p class="text-sm mt-4 opacity-70">
+                Нажимая кнопку, вы соглашаетесь с нашей <a href="#" class="underline hover:no-underline">Политикой конфиденциальности</a>.
+            </p>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="bg-gray-900 text-gray-400 py-16 px-4">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold text-white mb-4">STREETWEAR</h3>
+                    <p class="mb-4">
+                        Премиальный бренд уличной одежды и аксессуаров. Создаем стиль для тех, кто ценит комфорт и индивидуальность.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-purple-600 hover:text-white transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-blue-600 hover:text-white transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-red-500 hover:text-white transition">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-blue-400 hover:text-white transition">
+                            <i class="fab fa-telegram-plane"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-bold mb-4">Магазин</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-white transition">Мужское</a></li>
+                        <li><a href="#" class="hover:text-white transition">Женское</a></li>
+                        <li><a href="#" class="hover:text-white transition">Детское</a></li>
+                        <li><a href="#" class="hover:text-white transition">Новинки</a></li>
+                        <li><a href="#" class="hover:text-white transition">Акции</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-bold mb-4">Информация</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-white transition">О нас</a></li>
+                        <li><a href="#" class="hover:text-white transition">Блог</a></li>
+                        <li><a href="#" class="hover:text-white transition">Доставка и оплата</a></li>
+                        <li><a href="#" class="hover:text-white transition">Возврат</a></li>
+                        <li><a href="#" class="hover:text-white transition">Контакты</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-bold mb-4">Контакты</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-2 text-purple-400"></i>
+                            <span>Москва, ул. Тверская, 12</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt mr-2 text-purple-400"></i>
+                            <span>+7 (495) 123-45-67</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-2 text-purple-400"></i>
+                            <span>info@streetwear.ru</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-clock mr-2 text-purple-400"></i>
+                            <span>Пн-Пт: 9:00 - 20:00</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p>© 2023 STREETWEAR. Все права защищены.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-white transition">Политика конфиденциальности</a>
+                    <a href="#" class="hover:text-white transition">Условия использования</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Модальное окно видео -->
+    <div id="videoModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 opacity-0 invisible transition-all duration-300">
+        <div class="relative w-full max-w-4xl bg-black rounded-xl overflow-hidden">
+            <button id="closeVideo" class="absolute top-4 right-4 text-white text-2xl z-10 hover:text-purple-400">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="aspect-w-16 aspect-h-9">
+                <iframe id="videoFrame" class="w-full h-[300px] sm:h-[400px] md:h-[500px]" src="" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно быстрого просмотра -->
+    <div id="quickViewModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 opacity-0 invisible transition-all duration-300">
+        <div class="modal relative w-full max-w-4xl bg-white rounded-xl overflow-hidden mx-4">
+            <button id="closeQuickView" class="absolute top-4 right-4 text-gray-500 text-2xl z-10 hover:text-purple-600">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <div class="flex flex-col md:flex-row">
+                <div class="md:w-1/2 p-6">
+                    <img id="productImg" src="" alt="" class="w-full rounded-lg">
+                    <div class="grid grid-cols-4 gap-2 mt-4">
+                        <img src="https://images.unsplash.com/photo-1600269452121-1fda279b8a1a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
+                             alt="" class="cursor-pointer border-2 border-transparent hover:border-purple-500 rounded">
+                        <img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1025&q=80" 
+                             alt="" class="cursor-pointer border-2 border-transparent hover:border-purple-500 rounded">
+                        <img src="https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80" 
+                             alt="" class="cursor-pointer border-2 border-transparent hover:border-purple-500 rounded">
+                        <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1026&q=80" 
+                             alt="" class="cursor-pointer border-2 border-transparent hover:border-purple-500 rounded">
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2 p-6 md:p-8">
+                    <h2 id="productTitle" class="text-2xl font-bold mb-2"></h2>
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-yellow-400 mr-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <span class="text-gray-500 text-sm">(48 отзывов)</span>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <span id="productPrice" class="text-3xl font-bold"></span>
+                        <span class="text-gray-500 ml-2">₽</span>
+                    </div>
+                    
+                    <p class="text-gray-600 mb-6">
+                        Высококачественные материалы и инновационные технологии делают эту модель идеальным выбором для повседневной носки. Удобство и стиль в одном продукте.
+                    </p>
+                    
+                    <div class="mb-6">
+                        <h4 class="font-bold mb-2">Размер</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <button class="w-12 h-10 border border-gray-300 rounded hover:border-gray-900 transition">XS</button>
+                            <button class="w-12 h-10 border border-gray-300 rounded hover:border-gray-900 transition">S</button>
+                            <button class="w-12 h-10 border border-gray-300 rounded hover:border-gray-900 transition bg-gray-900 text-white">M</button>
+                            <button class="w-12 h-10 border border-gray-300 rounded hover:border-gray-900 transition">L</button>
+                            <button class="w-12 h-10 border border-gray-300 rounded hover:border-gray-900 transition">XL</button>
+                            <button class="w-12 h-10 border border-gray-300 rounded hover:border-gray-900 transition">XXL</button>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h4 class="font-bold mb-2">Цвет</h4>
+                        <div class="flex gap-3">
+                            <button class="w-8 h-8 rounded-full bg-gray-900 border-2 border-transparent hover:border-gray-900 transition"></button>
+                            <button class="w-8 h-8 rounded-full bg-blue-600 border-2 border-transparent hover:border-gray-900 transition"></button>
+                            <button class="w-8 h-8 rounded-full bg-red-500 border-2 border-transparent hover:border-gray-900 transition"></button>
+                            <button class="w-8 h-8 rounded-full bg-green-500 border-2 border-transparent hover:border-gray-900 transition"></button>
+                            <button class="w-8 h-8 rounded-full bg-purple-600 border-2 border-transparent hover:border-gray-900 transition"></button>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <div class="flex border border-gray-300 rounded-full overflow-hidden">
+                            <button class="px-4 py-2 hover:bg-gray-100">-</button>
+                            <input type="text" value="1" class="w-12 text-center border-x border-gray-300">
+                            <button class="px-4 py-2 hover:bg-gray-100">+</button>
+                        </div>
+                        <button class="flex-grow bg-purple-600 text-white py-3 px-6 rounded-full font-medium hover:bg-purple-700 transition">
+                            Добавить в корзину
+                        </button>
+                    </div>
+                    
+                    <div class="mt-6 pt-6 border-t border-gray-200">
+                        <div class="flex items-start mb-2">
+                            <i class="fas fa-truck text-purple-600 mt-1 mr-2"></i>
+                            <span class="text-gray-600">Бесплатная доставка при заказе от 5 000 ₽</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-undo-alt text-purple-600 mt-1 mr-2"></i>
+                            <span class="text-gray-600">Возврат в течение 30 дней</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Мобильное меню
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Модальное окно видео
+        const videoBtn = document.getElementById('videoBtn');
+        const videoModal = document.getElementById('videoModal');
+        const closeVideo = document.getElementById('closeVideo');
+        const videoFrame = document.getElementById('videoFrame');
+        
+        videoBtn.addEventListener('click', () => {
+            videoFrame.src = "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1";
+            videoModal.classList.remove('invisible', 'opacity-0');
+            videoModal.classList.add('visible', 'opacity-100');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        closeVideo.addEventListener('click', () => {
+            videoModal.classList.remove('visible', 'opacity-100');
+            videoModal.classList.add('invisible', 'opacity-0');
+            videoFrame.src = "";
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Модальное окно быстрого просмотра
+        const quickViewBtns = document.querySelectorAll('.quick-view-btn');
+        const quickViewModal = document.getElementById('quickViewModal');
+        const closeQuickView = document.getElementById('closeQuickView');
+        const productImg = document.getElementById('productImg');
+        const productTitle = document.getElementById('productTitle');
+        const productPrice = document.getElementById('productPrice');
+        
+        quickViewBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const product = btn.getAttribute('data-product');
+                const price = btn.getAttribute('data-price');
+                const img = btn.getAttribute('data-img');
+                
+                productTitle.textContent = product;
+                productPrice.textContent = price;
+                productImg.src = img;
+                productImg.alt = product;
+                
+                quickViewModal.classList.remove('invisible', 'opacity-0');
+                quickViewModal.classList.add('visible', 'opacity-100');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+        
+        closeQuickView.addEventListener('click', () => {
+            quickViewModal.classList.remove('visible', 'opacity-100');
+            quickViewModal.classList.add('invisible', 'opacity-0');
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Закрытие модальных окон при клике вне области
+        [videoModal, quickViewModal].forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('visible', 'opacity-100');
+                    modal.classList.add('invisible', 'opacity-0');
+                    if (modal === videoModal) videoFrame.src = "";
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+        
+        // Плавная прокрутка для якорных ссылок
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Анимация при скролле
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.fade-in');
+            
+            elements.forEach(el => {
+                const elTop = el.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elTop < windowHeight - 100) {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+    </script>
+</body>
+</html>
