@@ -15,6 +15,23 @@
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .scroll-animate {
+            opacity: 0;
+            transition: all 0.6s ease-out;
+        }
+        .animate-slide-up {
+            animation: slideUp 0.8s ease-out forwards;
+        }
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.05); }
@@ -27,6 +44,34 @@
         }
         .pulse-animation {
             animation: pulse 2s infinite;
+        }
+        .rotate-animation {
+            animation: rotate 8s linear infinite;
+        }
+        .glow-animation {
+            animation: glow 3s ease-in-out infinite alternate;
+        }
+        .slide-in-left {
+            animation: slideInLeft 1s ease-out forwards;
+        }
+        .slide-in-right {
+            animation: slideInRight 1s ease-out forwards;
+        }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        @keyframes glow {
+            from { box-shadow: 0 0 5px rgba(168, 85, 247, 0.5); }
+            to { box-shadow: 0 0 20px rgba(168, 85, 247, 0.8); }
+        }
+        @keyframes slideInLeft {
+            from { transform: translateX(-100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes slideInRight {
+            from { transform: translateX(100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
         }
         .modal {
             transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -98,7 +143,7 @@
                     Эксклюзивные модели с инновационными материалами. Созданы для комфорта и стиля в любых условиях.
                 </p>
                 <div class="flex space-x-4">
-                    <button class="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-full font-medium transition-all transform hover:scale-105">
+                    <button class="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-full font-medium transition-all transform hover:scale-105 glow-animation">
                         Купить сейчас
                     </button>
                     <button id="videoBtn" class="flex items-center text-gray-300 hover:text-white">
@@ -120,13 +165,13 @@
     </section>
 
     <!-- Популярные товары -->
-    <section class="py-20 px-4">
+    <section class="py-20 px-4 scroll-animate">
         <div class="container mx-auto">
             <h2 class="text-3xl font-bold text-center mb-16">Популярные товары</h2>
             
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- Товар 1 -->
-                <div class="product-card bg-white rounded-xl overflow-hidden shadow-md transition-all duration-300 cursor-pointer group">
+                <div class="product-card bg-white rounded-xl overflow-hidden shadow-md transition-all duration-300 cursor-pointer group hover:rotate-1 hover:glow-animation">
                     <div class="relative overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1600269452121-1fda279b8a1a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
                              alt="Кроссовки Air Max" 
@@ -266,7 +311,7 @@
     </section>
 
     <!-- Параллакс секция -->
-    <section class="parallax py-32 px-4 bg-gray-900 text-white" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1491553895911-0055eca6402d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1180&q=80')">
+    <section class="parallax py-32 px-4 bg-gray-900 text-white scroll-animate" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1491553895911-0055eca6402d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1180&q=80')">
         <div class="container mx-auto text-center">
             <h2 class="text-4xl font-bold mb-6">Ограниченная коллекция</h2>
             <p class="text-xl mb-8 max-w-2xl mx-auto">
@@ -279,10 +324,10 @@
     </section>
 
     <!-- Преимущества -->
-    <section class="py-20 px-4 bg-gray-50">
+    <section class="py-20 px-4 bg-gray-50 scroll-animate">
         <div class="container mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition text-center">
+                <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition text-center slide-in-left">
                     <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
                         <i class="fas fa-truck text-purple-600 text-2xl"></i>
                     </div>
@@ -292,7 +337,7 @@
                     </p>
                 </div>
                 
-                <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition text-center">
+                <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition text-center fade-in">
                     <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
                         <i class="fas fa-undo-alt text-blue-600 text-2xl"></i>
                     </div>
@@ -302,7 +347,7 @@
                     </p>
                 </div>
                 
-                <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition text-center">
+                <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition text-center slide-in-right">
                     <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
                         <i class="fas fa-shield-alt text-green-600 text-2xl"></i>
                     </div>
@@ -316,7 +361,7 @@
     </section>
 
     <!-- Подписка -->
-    <section class="py-20 px-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+    <section class="py-20 px-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white scroll-animate">
         <div class="container mx-auto max-w-4xl text-center">
             <h2 class="text-3xl font-bold mb-6">Подпишитесь на рассылку</h2>
             <p class="text-xl mb-8 opacity-90">
@@ -325,7 +370,7 @@
             
             <div class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
                 <input type="email" placeholder="Ваш email" class="flex-grow px-4 py-3 rounded-full text-gray-900 focus:outline-none focus:ring-2 focus:ring-purple-300">
-                <button class="px-6 py-3 bg-gray-900 text-white font-bold rounded-full hover:bg-gray-800 transition">
+                <button class="px-6 py-3 bg-gray-900 text-white font-bold rounded-full hover:bg-gray-800 transition transform hover:scale-105 pulse-animation">
                     Подписаться
                 </button>
             </div>
@@ -612,21 +657,35 @@
         
         // Анимация при скролле
         const animateOnScroll = () => {
-            const elements = document.querySelectorAll('.fade-in');
+            const elements = document.querySelectorAll('.scroll-animate');
+            const windowHeight = window.innerHeight;
+            const triggerOffset = windowHeight * 0.8;
             
             elements.forEach(el => {
                 const elTop = el.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
                 
-                if (elTop < windowHeight - 100) {
+                if (elTop < triggerOffset) {
+                    el.classList.add('animate-slide-up');
                     el.style.opacity = '1';
-                    el.style.transform = 'translateY(0)';
                 }
             });
         };
         
+        // Запустить при загрузке
+        window.addEventListener('load', () => {
+            animateOnScroll();
+            // Анимировать элементы, которые уже в viewport
+            document.querySelectorAll('.scroll-animate').forEach(el => {
+                const elTop = el.getBoundingClientRect().top;
+                if (elTop < window.innerHeight) {
+                    el.classList.add('animate-slide-up');
+                    el.style.opacity = '1';
+                }
+            });
+        });
+        
+        // Запустить при скролле
         window.addEventListener('scroll', animateOnScroll);
-        window.addEventListener('load', animateOnScroll);
     </script>
 </body>
 </html>
